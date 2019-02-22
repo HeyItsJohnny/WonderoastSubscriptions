@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFirestore } from 'angularfire2/firestore';
 import { AlertController } from '@ionic/angular';
 
 export interface Product {
@@ -56,7 +53,7 @@ export class ProductsService {
   }
 
   removeProduct(id) {
-    let BudgetsCollection = this.db.collection('products');
-    return BudgetsCollection.doc(id).delete();
+    let productCollection = this.db.collection('products');
+    return productCollection.doc(id).delete();
   }
 }

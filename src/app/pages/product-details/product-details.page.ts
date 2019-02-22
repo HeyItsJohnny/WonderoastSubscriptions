@@ -89,5 +89,9 @@ export class ProductDetailsPage implements OnInit {
     }).then(alert => alert.present());
   }
 
+  viewProductPrices() {
+    
+  }
+
 
 }
