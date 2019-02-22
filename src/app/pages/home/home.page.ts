@@ -32,6 +32,8 @@ export class HomePage {
     UpdatedAt: 0
   };
 
+  constructor() {}
+
   /*constructor(
     private subscriptionService: SubscriptionService,
     public menuController: MenuController,
@@ -39,6 +41,7 @@ export class HomePage {
 
   addSubscription() {
     if (this.allFieldsFilledOut()) {
+      SubscriptionService
       //this.subscriptionService.addBSubscription(this.subscription);
     }
   }
