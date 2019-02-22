@@ -4,12 +4,10 @@ import { AlertController } from '@ionic/angular';
 
 export interface ProductPrices {
   id?: string;
-  ProductID: string;
   UnitOfMeasure: string;
   RoastType: string;
   Price: number;
 }
-
 
 @Injectable({
   providedIn: 'root'

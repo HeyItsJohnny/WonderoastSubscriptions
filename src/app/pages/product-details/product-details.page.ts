@@ -26,7 +26,8 @@ export class ProductDetailsPage implements OnInit {
     private prodService: ProductsService,
     public alertController: AlertController,
     public menuController: MenuController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -90,7 +91,7 @@ export class ProductDetailsPage implements OnInit {
   }
 
   viewProductPrices() {
-    
+    this.router.navigateByUrl('/product-prices-list/' + this.product.id);
   }
 
 
