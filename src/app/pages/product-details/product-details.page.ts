@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Product, ProductsService } from 'src/app/services/products.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController, LoadingController, AlertController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-details',
@@ -7,9 +10,84 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsPage implements OnInit {
 
-  constructor() { }
+  product: Product = {
+    Name: '',
+    Description: '',
+    SoldOut: false,
+    PriceID: '',
+    SearchName: ''
+  };
+
+  productId = null;
+
+  constructor(
+    private route: ActivatedRoute, 
+    private nav: NavController, 
+    private prodService: ProductsService,
+    public alertController: AlertController,
+    public menuController: MenuController,
+    private loadingController: LoadingController
+  ) { }
 
   ngOnInit() {
+    this.productId = this.route.snapshot.params['id'];
+    if (this.productId)  {
+      this.loadProduct();
+    }
   }
+
+  async loadProduct() {   
+    const loading = await this.loadingController.create({
+      message: 'Loading Product..'
+    });
+    await loading.present();
+ 
+    this.prodService.getProduct(this.productId).subscribe(res => {
+      loading.dismiss();
+      this.product = res;
+    })
+  }
+
+  async saveProduct() {
+    const loading = await this.loadingController.create({
+      message: 'Saving Product..'
+    });
+    await loading.present();
+ 
+    if (this.productId) {
+      this.prodService.updateProduct(this.product, this.productId).then(() => {
+        loading.dismiss();
+        this.nav.pop();
+      });
+    } else {
+      this.prodService.addProduct(this.product).then(() => {
+        loading.dismiss();
+        this.nav.pop();
+      });
+    }
+  }
+
+  async deleteProduct() {
+    this.alertController.create({
+      header: "Are you sure you want to delete this product?",
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.prodService.removeProduct(this.productId).then(() => {
+              this.nav.pop();
+            });
+          }
+        },
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => { }
+        }
+      ]
+    }).then(alert => alert.present());
+  }
+
 
 }

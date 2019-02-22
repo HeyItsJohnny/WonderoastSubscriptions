@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Product, ProductsService } from 'src/app/services/products.service';
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +12,8 @@ export class ProductListPage {
   products: Product[];
 
   constructor(
-    private prodService: ProductsService
+    private prodService: ProductsService,
+    private router: Router
   ) { }
 
   ionViewWillEnter() {
@@ -28,4 +27,7 @@ export class ProductListPage {
     })
   }
 
+  viewDetails(item){
+    this.router.navigateByUrl('/product-details/' + item.payload.doc.id);
+  }
 }

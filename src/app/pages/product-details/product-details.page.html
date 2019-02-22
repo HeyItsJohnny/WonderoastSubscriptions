@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ProductDetails</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="product-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+    <ion-list lines="full">
+        <h1>Details</h1>
+        <ion-item>
+            <ion-label stacked class="bold-label">Name:</ion-label>
+            <ion-input required type="text" [(ngModel)]="product.Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked class="bold-label">Description:</ion-label>
+          <ion-input required type="text" [(ngModel)]="product.Description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked class="bold-label">Sold out:</ion-label>
+          <ion-checkbox [(ngModel)]="product.SoldOut" ></ion-checkbox>
+        </ion-item> 
+    </ion-list>
+    <ion-button expand="full" (click)="saveProduct()">Save</ion-button>
+    <ion-button expand="full" (click)="deleteProduct()">Delete</ion-button>
 </ion-content>

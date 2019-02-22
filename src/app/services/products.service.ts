@@ -23,8 +23,7 @@ export class ProductsService {
 
   constructor(
     private db: AngularFirestore,
-    public alertController: AlertController,
-    private afAuth: AngularFireAuth) { }
+    public alertController: AlertController) { }
 
   getProducts() {
     return new Promise<any>((resolve, reject) => {
@@ -57,7 +56,7 @@ export class ProductsService {
   }
 
   removeProduct(id) {
-    let productCollection = this.db.collection('products');
-    return  productCollection.doc(id).delete;
+    let BudgetsCollection = this.db.collection('products');
+    return BudgetsCollection.doc(id).delete();
   }
 }
