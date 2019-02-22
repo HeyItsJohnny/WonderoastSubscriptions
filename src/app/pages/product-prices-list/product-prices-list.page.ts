@@ -26,6 +26,7 @@ export class ProductPricesListPage {
   }
 
   getProductData() {
+    console.log("PROD ID: " + this.productID);
     this.prodPricesService.getProductPrices(this.productID)
     .then(data => {
       this.productPrices = data;

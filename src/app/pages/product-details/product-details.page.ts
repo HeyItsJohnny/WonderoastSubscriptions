@@ -91,7 +91,7 @@ export class ProductDetailsPage implements OnInit {
   }
 
   viewProductPrices() {
-    this.router.navigateByUrl('/product-prices-list/' + this.product.id);
+    this.router.navigateByUrl('/product-prices-list/' + this.productId);
   }
 
 

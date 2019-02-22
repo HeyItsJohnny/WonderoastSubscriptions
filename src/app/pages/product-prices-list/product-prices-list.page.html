@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ng-container *ngIf="!productprices || productprices.length == 0">
+    <ng-container *ngIf="!productPrices || productPrices.length == 0">
       <div *ngFor="let n of [0,1,2]" padding>
         <ion-skeleton-text></ion-skeleton-text>
         <p>
@@ -15,7 +15,7 @@
       </div>
     </ng-container>
   
-    <ion-item-sliding *ngFor="let item of productprices">
+    <ion-item-sliding *ngFor="let item of productPrices">
       <ion-item lines="inset" button (click)="viewDetails(item)">
         <ion-label>
           {{ item.payload.doc.data().UnitOfMeasure }} - {{ item.payload.doc.data().RoastType }} - {{ item.payload.doc.data().Price }}
