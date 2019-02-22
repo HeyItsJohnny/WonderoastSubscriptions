@@ -41,7 +41,7 @@ export class HomePage {
 
   addSubscription() {
     if (this.allFieldsFilledOut()) {
-      //this.subscriptionService.addBSubscription(this.subscription);
+      //this.subscriptionService.addSubscription(this.subscription);
     }
   }
 

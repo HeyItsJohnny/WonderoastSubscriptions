@@ -33,8 +33,7 @@ export class SubscriptionService {
 
   constructor(
     private db: AngularFirestore,
-    public alertController: AlertController,
-    private afAuth: AngularFireAuth) { 
+    public alertController: AlertController) { 
 
   }
 
@@ -52,7 +51,7 @@ export class SubscriptionService {
     return subscriptionCollection.doc<Subscription>(id).valueChanges();
   }
 
-  addBSubscription(subscription: Subscription) {
+  addSubscription(subscription: Subscription) {
     var tmp = subscription;
     tmp.SearchName = subscription.Name.toLowerCase();
     tmp.SearchFrequency = subscription.Frequency.toLowerCase();
