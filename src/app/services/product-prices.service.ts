@@ -27,8 +27,8 @@ export class ProductPricesService {
       })
     }
 
-    getProductPrice(id) {
-      let productPriceCollection = this.db.collection('products');
+    getProductPrice(id: string, productID: string) {
+      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices');
       return productPriceCollection.doc<ProductPrices>(id).valueChanges();
     }
 
@@ -37,8 +37,8 @@ export class ProductPricesService {
       return  productPriceCollection.add(productPrices);
     }
 
-    updateProductPrices(productPrices: ProductPrices, id: string) {
-      let productPriceCollection = this.db.collection('productprices');
+    updateProductPrices(productPrices: ProductPrices, id: string, productID: string) {
+      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices');
       return  productPriceCollection.doc(id).update(productPrices);
     }
 

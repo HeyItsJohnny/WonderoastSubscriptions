@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ProductPricesDetails</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="product-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Product Prices</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+    <ion-list lines="full">
+        <h1>Price Details</h1>
+        <ion-item>
+            <ion-label stacked class="bold-label">Unit of Measure:</ion-label>
+            <ion-input required type="text" [(ngModel)]="productPrice.UnitOfMeasure"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked class="bold-label">Roast Type:</ion-label>
+          <ion-input required type="text" [(ngModel)]="productPrice.RoastType"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked class="bold-label">Price:</ion-label>
+          <ion-input required type="number" [(ngModel)]="productPrice.Price"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-button expand="full" (click)="saveProductPrice()">Save</ion-button>
+    <ion-button expand="full" (click)="deleteProductPrice()">Delete</ion-button>
 </ion-content>
