@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductPrices, ProductPricesService } from 'src/app/services/product-prices.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-prices-list',
@@ -17,20 +17,23 @@ export class ProductPricesListPage {
     private prodPricesService: ProductPricesService,
     private router: Router,
     public alertController: AlertController,
+    public events: Events,
     private route: ActivatedRoute
   ) { }
 
   ionViewWillEnter() {
-    this.productID = this.route.snapshot.params['id'];
     this.getProductData();
   }
 
   getProductData() {
-    console.log("PROD ID: " + this.productID);
-    this.prodPricesService.getProductPrices(this.productID)
-    .then(data => {
-      this.productPrices = data;
-    })
+    this.productID = this.route.snapshot.params['id'];
+    if (this.productID) {
+      this.events.publish('price:created', this.productID); 
+      this.prodPricesService.getProductPrices(this.productID)
+      .then(data => {
+        this.productPrices = data;
+      })
+    }
   }
 
   viewDetails(item){

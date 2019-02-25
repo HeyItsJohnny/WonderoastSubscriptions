@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductPrices, ProductPricesService } from 'src/app/services/product-prices.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, LoadingController, AlertController, MenuController } from '@ionic/angular';
+import { NavController, LoadingController, AlertController, MenuController, Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-prices-details',
@@ -17,6 +17,7 @@ export class ProductPricesDetailsPage implements OnInit {
   };
 
   productPriceId = null;
+  productId = null;
 
   constructor(
     private prodPricesService: ProductPricesService,
@@ -25,14 +26,18 @@ export class ProductPricesDetailsPage implements OnInit {
     public menuController: MenuController,
     private loadingController: LoadingController,
     private router: Router,
+    public events: Events,
     private nav: NavController
   ) { }
 
   ngOnInit() {
-    this.productPriceId = this.route.snapshot.params['id'];
-    if (this.productPriceId)  {
-      this.loadProductPrice();
-    }
+    this.events.subscribe('price:created', set => {
+      this.productId = set;
+      this.productPriceId = this.route.snapshot.params['id'];
+      if (this.productPriceId)  {
+        this.loadProductPrice();
+      }
+    });
   }
 
   async loadProductPrice() {   
@@ -41,10 +46,10 @@ export class ProductPricesDetailsPage implements OnInit {
     });
     await loading.present();
  
-    /*this.prodPricesService.getProductPrice(this.productPriceId).subscribe(res => {
+    this.prodPricesService.getProductPrice(this.productPriceId,this.productId).subscribe(res => {
       loading.dismiss();
       this.productPrice = res;
-    })*/
+    })
   }
 
   async saveProductPrice() {
@@ -54,10 +59,10 @@ export class ProductPricesDetailsPage implements OnInit {
     await loading.present();
  
     if (this.productPriceId) {
-      /*this.prodPricesService.updateProductPrices(this.productPrice, this.productPriceId).then(() => {
+      this.prodPricesService.updateProductPrices(this.productPrice, this.productPriceId, this.productId).then(() => {
         loading.dismiss();
         this.nav.pop();
-      });*/
+      });
     }
   }
 
@@ -68,7 +73,7 @@ export class ProductPricesDetailsPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.prodPricesService.removeProductPrices(this.productPriceId).then(() => {
+            this.prodPricesService.removeProductPrices(this.productPriceId, this.productId).then(() => {
               this.nav.pop();
             });
           }

@@ -42,8 +42,8 @@ export class ProductPricesService {
       return  productPriceCollection.doc(id).update(productPrices);
     }
 
-    removeProductPrices(id) {
-      let productPriceCollection = this.db.collection('productprices');
+    removeProductPrices(id: string, productID: string) {
+      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices');
       return productPriceCollection.doc(id).delete();
     }
 
