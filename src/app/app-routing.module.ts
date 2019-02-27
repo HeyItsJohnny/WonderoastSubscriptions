@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
+  { path: '', redirectTo: 'wanderoast-home', pathMatch: 'full' },
+  { path: 'wanderoast-home', loadChildren: './pages/wanderoast-home/wanderoast-home.module#WanderoastHomePageModule' },
   { path: 'admin-home', loadChildren: './pages/admin-home/admin-home.module#AdminHomePageModule' },
   { path: 'subscription-details', loadChildren: './pages/subscription-details/subscription-details.module#SubscriptionDetailsPageModule' },
   { path: 'subscription-details/:id', loadChildren: './pages/subscription-details/subscription-details.module#SubscriptionDetailsPageModule' },
@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'product-prices-details', loadChildren: './pages/product-prices-details/product-prices-details.module#ProductPricesDetailsPageModule' },
   { path: 'product-prices-list/:id', loadChildren: './pages/product-prices-list/product-prices-list.module#ProductPricesListPageModule' },
   { path: 'product-prices-details/:id', loadChildren: './pages/product-prices-details/product-prices-details.module#ProductPricesDetailsPageModule' }
+
 
 ];
 
