@@ -14,7 +14,6 @@ export class ProductDetailsPage implements OnInit {
     Name: '',
     Description: '',
     SoldOut: false,
-    PriceID: '',
     SearchName: ''
   };
 

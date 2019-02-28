@@ -7,7 +7,6 @@ export interface Product {
   Name: string;
   Description: string;
   SoldOut: boolean;
-  PriceID: string;
   SearchName: string;
 }
 
