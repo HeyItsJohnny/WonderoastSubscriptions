@@ -67,8 +67,8 @@ export class ProductRoastTypeListPage {
               RoastType: data.RoastType,
               Description: data.RTDescription
             };       
-            this.prodRoastTypeService.addProductRoastType(roastObj,this.productId);   
-            this.getRoastTypeData();      
+            this.prodRoastTypeService.addProductRoastType(roastObj,this.productId);
+            this.getRoastTypeData();
           }
         }
       ]
@@ -76,25 +76,26 @@ export class ProductRoastTypeListPage {
   }
 
   viewDetails(item) {
-    var test = this.prodRoastTypeService.getProductRoastType(item.payload.doc.id,this.productId).subscribe(res => {
-      this.displayView(res);
+   var test = this.prodRoastTypeService.getProductRoastType(item.payload.doc.id,this.productId).subscribe(res => {
+      this.tmpRoastType = res;
+      this.displayView(item);      
       test.unsubscribe();
     });
   }
 
-  displayView(tmpRoastType: ProductRoastType) {
+  displayView(item) {
     this.alertController.create({
       header: 'Edit Roast Type',
       inputs: [
         {
           name: 'RoastType',
           type: 'text',
-          value: tmpRoastType.RoastType
+          value: this.tmpRoastType.RoastType
         },
         {
           name: 'RTDescription',
           type: 'text',
-          value: tmpRoastType.Description
+          value: this.tmpRoastType.Description
         }
       ],
       buttons: [
@@ -108,12 +109,10 @@ export class ProductRoastTypeListPage {
         }, {
           text: 'Ok',
           handler: (data) => {
-            var roastObj: ProductRoastType = {
-              RoastType: data.RoastType,
-              Description: data.RTDescription
-            };       
-            this.prodRoastTypeService.updateProductRoastType(roastObj,tmpRoastType.id,this.productId);   
-            this.getRoastTypeData();   
+            this.tmpRoastType.RoastType = data.RoastType;
+            this.tmpRoastType.Description = data.RTDescription;      
+            this.prodRoastTypeService.updateProductRoastType(this.tmpRoastType,item.payload.doc.id,this.productId);   
+            this.getRoastTypeData();
           }
         }
       ]
@@ -122,6 +121,7 @@ export class ProductRoastTypeListPage {
 
   remove(item) {
     this.prodRoastTypeService.removeProductRoastType(item.payload.doc.id,this.productId);
+    this.getRoastTypeData();
   }
 
 }

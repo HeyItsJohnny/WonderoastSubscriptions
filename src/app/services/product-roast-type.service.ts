@@ -33,7 +33,7 @@ export class ProductRoastTypeService {
 
     addProductRoastType(productRoastType: ProductRoastType, productID: string) {
       let dataCollection = this.db.collection('products').doc(productID).collection('productroasttypes')
-      return  dataCollection.add(productRoastType);
+      return dataCollection.add(productRoastType);
     }
 
     updateProductRoastType(productRoastType: ProductRoastType, id: string, productID: string) {
