@@ -28,23 +28,23 @@ export class ProductPricesService {
     }
 
     getProductPrice(id: string, productID: string) {
-      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices');
-      return productPriceCollection.doc<ProductPrices>(id).valueChanges();
+      let dataCollection = this.db.collection('products').doc(productID).collection('productprices');
+      return dataCollection.doc<ProductPrices>(id).valueChanges();
     }
 
     addProductPrices(productPrices: ProductPrices, productID: string) {
-      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices')
-      return  productPriceCollection.add(productPrices);
+      let dataCollection = this.db.collection('products').doc(productID).collection('productprices')
+      return  dataCollection.add(productPrices);
     }
 
     updateProductPrices(productPrices: ProductPrices, id: string, productID: string) {
-      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices');
-      return  productPriceCollection.doc(id).update(productPrices);
+      let dataCollection = this.db.collection('products').doc(productID).collection('productprices');
+      return  dataCollection.doc(id).update(productPrices);
     }
 
     removeProductPrices(id: string, productID: string) {
-      let productPriceCollection = this.db.collection('products').doc(productID).collection('productprices');
-      return productPriceCollection.doc(id).delete();
+      let dataCollection = this.db.collection('products').doc(productID).collection('productprices');
+      return dataCollection.doc(id).delete();
     }
 
 }
