@@ -5,7 +5,7 @@ import { AlertController } from '@ionic/angular';
 export interface ProductUnitOfMeasure {
   id?: string;
   UnitOfMeasure: string;
-  Description: number;
+  Description: string;
 }
 
 @Injectable({

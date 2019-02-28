@@ -13,8 +13,11 @@ const routes: Routes = [
   { path: 'product-prices-list', loadChildren: './pages/product-prices-list/product-prices-list.module#ProductPricesListPageModule' },
   { path: 'product-prices-details', loadChildren: './pages/product-prices-details/product-prices-details.module#ProductPricesDetailsPageModule' },
   { path: 'product-prices-list/:id', loadChildren: './pages/product-prices-list/product-prices-list.module#ProductPricesListPageModule' },
-  { path: 'product-prices-details/:id', loadChildren: './pages/product-prices-details/product-prices-details.module#ProductPricesDetailsPageModule' }
-
+  { path: 'product-prices-details/:id/:prodid', loadChildren: './pages/product-prices-details/product-prices-details.module#ProductPricesDetailsPageModule' },
+  { path: 'product-roast-type-list', loadChildren: './pages/product-roast-type-list/product-roast-type-list.module#ProductRoastTypeListPageModule' },
+  { path: 'product-unit-of-measure-list', loadChildren: './pages/product-unit-of-measure-list/product-unit-of-measure-list.module#ProductUnitOfMeasureListPageModule' },
+  { path: 'product-roast-type-list/:id', loadChildren: './pages/product-roast-type-list/product-roast-type-list.module#ProductRoastTypeListPageModule' },
+  { path: 'product-unit-of-measure-list/:id', loadChildren: './pages/product-unit-of-measure-list/product-unit-of-measure-list.module#ProductUnitOfMeasureListPageModule' }
 
 ];
 

@@ -93,5 +93,13 @@ export class ProductDetailsPage implements OnInit {
     this.router.navigateByUrl('/product-prices-list/' + this.productId);
   }
 
+  viewRoastTypes() {
+    this.router.navigateByUrl('/product-roast-type-list/' + this.productId);
+  }
+
+  viewUnitOfMeasures() {
+    this.router.navigateByUrl('/product-unit-of-measure-list/' + this.productId);
+  }
+
 
 }

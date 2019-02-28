@@ -5,7 +5,7 @@ import { AlertController } from '@ionic/angular';
 export interface ProductRoastType {
   id?: string;
   RoastType: string;
-  Description: number;
+  Description: string;
 }
 
 @Injectable({
