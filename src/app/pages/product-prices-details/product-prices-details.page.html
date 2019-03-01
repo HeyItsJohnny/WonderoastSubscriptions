@@ -9,10 +9,26 @@
 
 <ion-content padding>
     <ion-list lines="full">
-        <h1>Price Details</h1>
+        <h1>Unit of Measure</h1>
+        <!--<ion-item>
+          <ion-label>Unit of Measure</ion-label>
+          <ion-select value="category" [(ngModel)]="selectedUOM">
+            <ion-select-option value="340G">340 G</ion-select-option>
+            <ion-select-option value="1000G">1000 G</ion-select-option>
+          </ion-select>
+        </ion-item>
         <ion-item>
-            <ion-label stacked class="bold-label">Unit of Measure:</ion-label>
-            <ion-input required type="text" [(ngModel)]="productPrice.UnitOfMeasure"></ion-input>
+          <ion-label>Roast Type</ion-label>
+          <ion-select value="category" [(ngModel)]="selectedRoastType">
+            <ion-select-option value="Decaf">Decaf</ion-select-option>
+            <ion-select-option value="Light">Light</ion-select-option>
+            <ion-select-option value="Medium">Medium</ion-select-option>
+            <ion-select-option value="Medium">Dark</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+        <ion-item>
+          <ion-label stacked class="bold-label">Unit of Measure:</ion-label>
+          <ion-input required type="text" [(ngModel)]="productPrice.UnitOfMeasure"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked class="bold-label">Roast Type:</ion-label>

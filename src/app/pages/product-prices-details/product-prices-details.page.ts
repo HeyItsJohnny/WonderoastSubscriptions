@@ -18,6 +18,7 @@ export class ProductPricesDetailsPage implements OnInit {
 
   productPriceId = null;
   productId = null;
+  selectedUOM: string;
 
   constructor(
     private prodPricesService: ProductPricesService,

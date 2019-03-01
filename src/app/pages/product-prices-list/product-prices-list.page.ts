@@ -37,7 +37,12 @@ export class ProductPricesListPage {
   }
 
   viewDetails(item){
-    this.router.navigateByUrl('/product-prices-details/' + item.payload.doc.id);
+    try{
+      this.router.navigateByUrl('/product-prices-details/' + item.payload.doc.id);
+    } catch(e) {
+      console.log("Error: " + e);
+    }
+    
   }
 
   remove(item) {
