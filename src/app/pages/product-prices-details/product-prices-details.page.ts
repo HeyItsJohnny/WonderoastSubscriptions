@@ -63,28 +63,11 @@ export class ProductPricesDetailsPage implements OnInit {
         loading.dismiss();
         this.nav.pop();
       });
+    } else {
+      this.prodPricesService.addProductPrices(this.productPrice, this.productId).then(() => {
+        loading.dismiss();
+        this.nav.pop();
+      });
     }
-  }
-
-  async deleteProductPrice() {
-    this.alertController.create({
-      header: "Are you sure you want to delete this product price?",
-      buttons: [
-        {
-          text: 'Yes',
-          handler: () => {
-            this.prodPricesService.removeProductPrices(this.productPriceId, this.productId).then(() => {
-              this.nav.pop();
-            });
-          }
-        },
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => { }
-        }
-      ]
-    }).then(alert => alert.present());
   }
 }

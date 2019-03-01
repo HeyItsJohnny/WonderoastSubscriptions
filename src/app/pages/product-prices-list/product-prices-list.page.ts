@@ -22,10 +22,10 @@ export class ProductPricesListPage {
   ) { }
 
   ionViewWillEnter() {
-    this.getProductData();
+    this.getProductPriceData();
   }
 
-  getProductData() {
+  getProductPriceData() {
     this.productID = this.route.snapshot.params['id'];
     if (this.productID) {
       this.events.publish('price:created', this.productID); 
@@ -40,47 +40,9 @@ export class ProductPricesListPage {
     this.router.navigateByUrl('/product-prices-details/' + item.payload.doc.id);
   }
 
-  AddNewPrice() {
-    this.alertController.create({
-      header: 'New Product Price',
-      inputs: [
-        {
-          name: 'RoastType',
-          type: 'text',
-          placeholder: 'Roast Type'
-        },
-        {
-          name: 'UnitOfMeasure',
-          type: 'text',
-          placeholder: 'Unit of Measure'
-        },
-        {
-          name: 'Price',
-          type: 'number',
-          placeholder: 'Price'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: (data) => {
-            var priceObj: ProductPrices = {
-              UnitOfMeasure: data.UnitOfMeasure,
-              RoastType: data.RoastType,
-              Price: data.Price
-            };       
-            this.prodPricesService.addProductPrices(priceObj,this.productID); 
-            this.getProductData();      
-          }
-        }
-      ]
-    }).then(alert => alert.present());
+  remove(item) {
+    this.prodPricesService.removeProductPrices(item.payload.doc.id,this.productID);
+    this.getProductPriceData();
   }
+
 }
